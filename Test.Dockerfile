@@ -11,6 +11,4 @@ RUN dotnet publish -c Release -o output
 
 FROM base AS final
 COPY --from=build /src/Test/output .
-CMD dotnet Test.dll
-
-
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Test.dll
