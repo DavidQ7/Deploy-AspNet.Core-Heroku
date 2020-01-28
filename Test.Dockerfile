@@ -11,7 +11,6 @@ RUN dotnet publish -c Release -o output
 
 FROM base AS final
 COPY --from=build /src/Test/output .
-ENTRYPOINT ["dotnet", "Test.dll"]
-
+CMD dotnet Test.dll
 
 
