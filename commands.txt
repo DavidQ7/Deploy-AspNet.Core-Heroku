@@ -1,0 +1,7 @@
+docker build -t steam_api .
+
+docker tag steam_api registry.heroku.com/csgo-money-api/web
+
+heroku container:push web -a csgo-money-api
+
+heroku container:release web -a csgo-money-api
