@@ -15,6 +15,7 @@ namespace Test
 {
     public class Startup
     {
+        readonly string Policy = "Policy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,6 +26,17 @@ namespace Test
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: Policy,
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin()
+                                            .AllowAnyMethod()
+                                            .AllowAnyHeader();
+                                  });
+            });
+            services.AddHttpClient<ApiService>();
             services.AddControllers();
         }
 
